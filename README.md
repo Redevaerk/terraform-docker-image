@@ -8,7 +8,7 @@ Easily define your image source, repository details, and registry settings using
 
 ```terraform
 module "docker_image" {
-  source  = "redevaerk/image/docker"
+  source  = "Redevaerk/image/docker"
   version = "x.x.x"
   name    = var.name
 }
