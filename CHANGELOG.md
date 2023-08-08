@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.0.1](https://github.com/Redevaerk/terraform-docker-image/compare/v1.0.0...v1.0.1) (2023-08-08)
+
+
+### Bug Fixes
+
+* Fix dynamic build when context is in different source ([64128b5](https://github.com/Redevaerk/terraform-docker-image/commit/64128b54a168912701f8404e4ebe8c05aa308586))
+
 ## 1.0.0 (2023-08-07)
 
 
