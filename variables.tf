@@ -12,14 +12,26 @@ variable "name" {
   type        = string
 }
 
-variable "tag" {
-  description = "A tag for your Image"
-  type        = string
-  default     = "latest"
+variable "add_latest_tag" {
+  description = "Add latest tag to the Image. If false, it's necessary to add at least one tag on 'variable.tags'."
+  type        = bool
+  default     = true
+}
+
+variable "tags" {
+  description = "Optionally a tags to add to the Image"
+  type        = list(string)
+  default     = []
 }
 
 variable "keep_locally" {
   description = "If true, then the Docker image won't be deleted on destroy operation. If this is false, it will delete the image from the docker local storage on destroy operation."
+  type        = bool
+  default     = false
+}
+
+variable "keep_remotely" {
+  description = "If true, then the Docker image won't be deleted on destroy operation. If this is false, it will delete the image from the docker registry on destroy operation."
   type        = bool
   default     = false
 }

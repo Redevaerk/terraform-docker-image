@@ -19,6 +19,7 @@ module "docker_image" {
 - [Simple](https://github.com/redevaerk/terraform-docker-image/tree/main/examples/simple) - This example will build and push Docker image with default settings.
 - [Build Image With Context](https://github.com/redevaerk/terraform-docker-image/tree/main/examples/build-image-with-context) - This example will build and push Docker image with a context in different folder.
 - [Azure Container Registry](https://github.com/redevaerk/terraform-docker-image/tree/main/examples/build-image-with-context) - This example will build and push Docker image to Azure Container Registry.
+- [Multiple Tags](https://github.com/redevaerk/terraform-docker-image/tree/main/examples/multiple-tags) - This example will build and push Docker image with multiple tags.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -49,6 +50,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_add_latest_tag"></a> [add\_latest\_tag](#input\_add\_latest\_tag) | Add latest tag to the Image. If false, it's necessary to add at least one tag on 'variable.tags'. | `bool` | `true` | no |
 | <a name="input_context"></a> [context](#input\_context) | Value to specify the build context. Currently, only a PATH context is supported. | `string` | `null` | no |
 | <a name="input_dockerfile"></a> [dockerfile](#input\_dockerfile) | A directory containing your Dockerfile | `string` | `"Dockerfile"` | no |
 | <a name="input_dynamic_build"></a> [dynamic\_build](#input\_dynamic\_build) | If true, will force the docker\_image resource to be replaced. This can be used to rebuild an image when contents of source code folders change. | `bool` | `true` | no |
@@ -59,17 +61,19 @@ No modules.
 | <a name="input_dynamic_build_source_dir"></a> [dynamic\_build\_source\_dir](#input\_dynamic\_build\_source\_dir) | A directory containing your source code. This variable will be used in dynamic build when var.dynamic\_build\_attach\_source is true. | `string` | `"src"` | no |
 | <a name="input_force_remove"></a> [force\_remove](#input\_force\_remove) | If true, then the image is removed forcibly when the resource is destroyed. | `bool` | `false` | no |
 | <a name="input_keep_locally"></a> [keep\_locally](#input\_keep\_locally) | If true, then the Docker image won't be deleted on destroy operation. If this is false, it will delete the image from the docker local storage on destroy operation. | `bool` | `false` | no |
+| <a name="input_keep_remotely"></a> [keep\_remotely](#input\_keep\_remotely) | If true, then the Docker image won't be deleted on destroy operation. If this is false, it will delete the image from the docker registry on destroy operation. | `bool` | `false` | no |
 | <a name="input_labels"></a> [labels](#input\_labels) | A map of labels to add to the Image | `map(string)` | `{}` | no |
 | <a name="input_name"></a> [name](#input\_name) | A unique name for your Image | `string` | n/a | yes |
 | <a name="input_push"></a> [push](#input\_push) | If true, then the Image will be pushed to the registry | `bool` | `true` | no |
 | <a name="input_registry"></a> [registry](#input\_registry) | Registry Name to push the Image | `string` | `"registry-1.docker.io"` | no |
-| <a name="input_tag"></a> [tag](#input\_tag) | A tag for your Image | `string` | `"latest"` | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Optionally a tags to add to the Image | `list(string)` | `[]` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_image"></a> [image](#output\_image) | Name of the created docker image |
+| <a name="output_images"></a> [images](#output\_images) | List of all created docker images |
+| <a name="output_map_images"></a> [map\_images](#output\_map\_images) | Map per tag corresponding docker images |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## License

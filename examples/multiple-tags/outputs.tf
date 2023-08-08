@@ -1,9 +1,9 @@
 output "images" {
   description = "List of all created docker images"
-  value       = docker_image.this.build[*].tag[0]
+  value       = module.docker_image.images
 }
 
 output "map_images" {
   description = "Map per tag corresponding docker images"
-  value       = { for tag in local.tags : tag => "${local.image_name}:${tag}" }
+  value       = module.docker_image.map_images
 }
