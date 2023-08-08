@@ -16,6 +16,7 @@ vendor/
 
 # Local .terraform directory
 **/.terraform/*
+*.terraform.lock.hcl
 
 # IDE config files
 **/.idea/*

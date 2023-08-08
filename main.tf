@@ -5,10 +5,10 @@ locals {
     source_dir = sha1(join("", [for f in fileset(local.context, "${var.dynamic_build_source_dir}/*") : filesha1("${local.context}/${f}")]))
   } : {}
   build_triggers_dockerfile = var.create && var.dynamic_build && var.dynamic_build_attach_dockerfile ? {
-    dockerfile = filesha1(var.dockerfile)
+    dockerfile = filesha1("${local.context}/${var.dockerfile}")
   } : {}
   build_triggers_dockerignorefile = var.create && var.dynamic_build && var.dynamic_build_attach_dockerignore ? {
-    dockerignorefile = filesha1("${path.cwd}/.dockerignore")
+    dockerignorefile = filesha1("${local.context}/.dockerignore")
   } : {}
   build_triggers_extra = var.create && var.dynamic_build && var.dynamic_build_extra != null ? var.dynamic_build_extra : null
   build_triggers = var.create && var.dynamic_build ? merge(

@@ -16,7 +16,8 @@ module "docker_image" {
 
 ## Examples
 
-- [Simple](https://github.com/redevaerk/terraform-docker-image/tree/main/examples/simple) - This example will build and push Docker images with default settings.
+- [Simple](https://github.com/redevaerk/terraform-docker-image/tree/main/examples/simple) - This example will build and push Docker image with default settings.
+- [Build Image With Context](https://github.com/redevaerk/terraform-docker-image/tree/main/examples/build-image-with-context) - This example will build and push Docker image with a context in different folder.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -72,4 +73,3 @@ No outputs.
 ## License
 
 Apache 2 Licensed. See [LICENSE](https://github.com/redevaerk/terraform-docker-image/tree/main/LICENSE) for full details.
-

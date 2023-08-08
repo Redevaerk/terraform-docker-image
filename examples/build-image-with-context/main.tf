@@ -7,6 +7,7 @@ provider "docker" {
 }
 
 module "docker_image" {
-  source = "../../"
-  name   = var.name
+  source  = "../../"
+  name    = var.name
+  context = "${path.module}/context"
 }
