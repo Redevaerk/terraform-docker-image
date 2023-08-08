@@ -18,6 +18,7 @@ module "docker_image" {
 
 - [Simple](https://github.com/redevaerk/terraform-docker-image/tree/main/examples/simple) - This example will build and push Docker image with default settings.
 - [Build Image With Context](https://github.com/redevaerk/terraform-docker-image/tree/main/examples/build-image-with-context) - This example will build and push Docker image with a context in different folder.
+- [Azure Container Registry](https://github.com/redevaerk/terraform-docker-image/tree/main/examples/build-image-with-context) - This example will build and push Docker image to Azure Container Registry.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -49,7 +50,6 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_context"></a> [context](#input\_context) | Value to specify the build context. Currently, only a PATH context is supported. | `string` | `null` | no |
-| <a name="input_create"></a> [create](#input\_create) | Controls whether resources should be created | `bool` | `true` | no |
 | <a name="input_dockerfile"></a> [dockerfile](#input\_dockerfile) | A directory containing your Dockerfile | `string` | `"Dockerfile"` | no |
 | <a name="input_dynamic_build"></a> [dynamic\_build](#input\_dynamic\_build) | If true, will force the docker\_image resource to be replaced. This can be used to rebuild an image when contents of source code folders change. | `bool` | `true` | no |
 | <a name="input_dynamic_build_attach_dockerfile"></a> [dynamic\_build\_attach\_dockerfile](#input\_dynamic\_build\_attach\_dockerfile) | If true, will force the docker\_image resource to be replaced when dockerfile changes. | `bool` | `true` | no |
@@ -67,7 +67,9 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_image"></a> [image](#output\_image) | Name of the created docker image |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## License
