@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+### [1.1.1](https://github.com/Redevaerk/terraform-docker-image/compare/v1.1.0...v1.1.1) (2023-08-09)
+
+
+### Bug Fixes
+
+* tags cannot determined until apply on docker push ([0cd51a2](https://github.com/Redevaerk/terraform-docker-image/commit/0cd51a2f84aa78f5d2ab7d593388061283f9fa83))
+
 ## [1.1.0](https://github.com/Redevaerk/terraform-docker-image/compare/v1.0.1...v1.1.0) (2023-08-08)
 
 
