@@ -1,6 +1,7 @@
 locals {
   tags       = var.add_latest_tag && !contains(var.tags, "latest") ? compact(concat(["latest"], var.tags)) : compact(var.tags)
   image_name = "${var.registry}/${var.name}"
+  all_images = [for tag in local.tags : "${local.image_name}:${tag}"]
   context    = coalesce(var.context, path.cwd)
   build_triggers_source = var.dynamic_build && var.dynamic_build_attach_source ? {
     source_dir = sha1(join("", [for f in fileset(local.context, "${var.dynamic_build_source_dir}/*") : filesha1("${local.context}/${f}")]))
@@ -21,10 +22,11 @@ locals {
 }
 
 resource "docker_registry_image" "this" {
-  for_each      = var.push ? toset(docker_image.this.build[*].tag[0]) : toset([])
-  name          = each.value
+  count         = var.push ? length(local.all_images) : 0
+  name          = local.all_images[count.index]
   keep_remotely = var.keep_remotely
   triggers      = local.build_triggers
+  depends_on    = [docker_image.this]
 }
 
 resource "docker_image" "this" {
@@ -34,7 +36,7 @@ resource "docker_image" "this" {
   build {
     context    = local.context
     dockerfile = var.dockerfile
-    tag        = [for tag in local.tags : "${local.image_name}:${tag}"]
+    tag        = local.all_images
     labels     = var.labels
   }
   triggers = local.build_triggers
